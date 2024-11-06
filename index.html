@@ -59,46 +59,76 @@
       margin-bottom: 5px;
       color: #4d004d;
     }
+
+    /* Estilo para o botão de limpar */
+    #clear-btn {
+      background: linear-gradient(135deg, #ff7f7f, #ff4d4d);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 1.1em;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      display: block;
+      margin: 20px auto; /* Centraliza o botão */
+    }
+
+    #clear-btn:hover {
+      background: linear-gradient(135deg, #ff6666, #ff3333);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+
+    #clear-btn:active {
+      background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body>
 
   <h1>Checklist Diário</h1>
 
+  <!-- Botão para limpar todas as marcações -->
+  <button id="clear-btn">Limpar todas as marcações</button>
+
   <h2>Segunda-feira</h2>
   <div class="day-section" id="monday-tasks">
-    <label><input type="checkbox"> 07:30 - Preparar recepção e ambiente (luz, ar, cheirinho, café)</label>
-    <label><input type="checkbox"> 08:00 - Organização inicial e resposta de clientes</label>
-    <label><input type="checkbox"> 09:00 - Fechar caixa e enviar relatório (Discord)</label>
-    <label><input type="checkbox"> 10:00 - Kick-off com equipe</label>
-    <label><input type="checkbox"> 11:00 - Feedback com Andressa</label>
-    <label><input type="checkbox"> 11:30 - Pausa para almoço</label>
-    <label><input type="checkbox"> 13:30 - Verificar banheiros</label>
-    <label><input type="checkbox"> 14:00 - Confirmar clientes semanais com Pix reserva</label>
-    <label><input type="checkbox"> 16:00 - Atualizar CRM (Sprinthub)</label>
-    <label><input type="checkbox"> 17:00 - Fechar caixa e organizar recepção</label>
-    <label><input type="checkbox"> 17:30 - Fechar atendimentos do dia</label>
+    <label><input type="checkbox" data-task-id="mon-1"> 07:30 - Preparar recepção e ambiente (luz, ar, cheirinho, café)</label>
+    <label><input type="checkbox" data-task-id="mon-2"> 08:00 - Organização inicial e resposta de clientes</label>
+    <label><input type="checkbox" data-task-id="mon-3"> 09:00 - Fechar caixa e enviar relatório (Discord)</label>
+    <label><input type="checkbox" data-task-id="mon-4"> 10:00 - Kick-off com equipe</label>
+    <label><input type="checkbox" data-task-id="mon-5"> 11:00 - Feedback com Andressa</label>
+    <label><input type="checkbox" data-task-id="mon-6"> 11:30 - Pausa para almoço</label>
+    <label><input type="checkbox" data-task-id="mon-7"> 13:30 - Verificar banheiros</label>
+    <label><input type="checkbox" data-task-id="mon-8"> 14:00 - Confirmar clientes semanais com Pix reserva</label>
+    <label><input type="checkbox" data-task-id="mon-9"> 16:00 - Atualizar CRM (Sprinthub)</label>
+    <label><input type="checkbox" data-task-id="mon-10"> 17:00 - Fechar caixa e organizar recepção</label>
+    <label><input type="checkbox" data-task-id="mon-11"> 17:30 - Fechar atendimentos do dia</label>
   </div>
 
   <h2>Terça a Quinta-feira</h2>
   <div class="day-section" id="weekday-tasks">
-    <label><input type="checkbox"> 07:30 - Preparar recepção e café</label>
-    <label><input type="checkbox"> 08:00 - Organização inicial e atendimentos WhatsApp</label>
-    <label><input type="checkbox"> 09:00 - Mensagens de bom dia para clientes</label>
-    <label><input type="checkbox"> 11:30 - Pausa para almoço</label>
-    <label><input type="checkbox"> 13:30 - Retorno de atendimentos e verificação do ambiente</label>
-    <label><input type="checkbox"> 17:30 - Organizar recepção, relatórios e fechar caixa</label>
+    <label><input type="checkbox" data-task-id="tue-thu-1"> 07:30 - Preparar recepção e café</label>
+    <label><input type="checkbox" data-task-id="tue-thu-2"> 08:00 - Organização inicial e atendimentos WhatsApp</label>
+    <label><input type="checkbox" data-task-id="tue-thu-3"> 09:00 - Mensagens de bom dia para clientes</label>
+    <label><input type="checkbox" data-task-id="tue-thu-4"> 11:30 - Pausa para almoço</label>
+    <label><input type="checkbox" data-task-id="tue-thu-5"> 13:30 - Retorno de atendimentos e verificação do ambiente</label>
+    <label><input type="checkbox" data-task-id="tue-thu-6"> 17:30 - Organizar recepção, relatórios e fechar caixa</label>
   </div>
 
   <h2>Sexta-feira e Sábado</h2>
   <div class="day-section" id="friday-saturday-tasks">
-    <label><input type="checkbox"> 07:30 - Organização da recepção</label>
-    <label><input type="checkbox"> 08:00 - Pagamentos das alunas</label>
-    <label><input type="checkbox"> 09:00 - Confirmações do dia e follow-up</label>
-    <label><input type="checkbox"> 11:30 - Pausa para almoço</label>
-    <label><input type="checkbox"> 13:30 - Retorno de atendimentos</label>
-    <label><input type="checkbox"> 15:00 - Atualizar CRM</label>
-    <label><input type="checkbox"> 17:30 - Fechamento do caixa e recepção</label>
+    <label><input type="checkbox" data-task-id="fri-sat-1"> 07:30 - Organização da recepção</label>
+    <label><input type="checkbox" data-task-id="fri-sat-2"> 08:00 - Pagamentos das alunas</label>
+    <label><input type="checkbox" data-task-id="fri-sat-3"> 09:00 - Confirmações do dia e follow-up</label>
+    <label><input type="checkbox" data-task-id="fri-sat-4"> 11:30 - Pausa para almoço</label>
+    <label><input type="checkbox" data-task-id="fri-sat-5"> 13:30 - Retorno de atendimentos</label>
+    <label><input type="checkbox" data-task-id="fri-sat-6"> 15:00 - Atualizar CRM</label>
+    <label><input type="checkbox" data-task-id="fri-sat-7"> 17:30 - Fechamento do caixa e recepção</label>
   </div>
 
   <h2>Cronograma Mensal</h2>
@@ -113,46 +143,43 @@
   </ul>
 
   <script>
-    function solicitarPermissaoNotificacao() {
-      if (Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            agendarNotificacoes();
-          }
-        });
-      } else {
-        agendarNotificacoes();
-      }
-    }
-
-    function agendarNotificacoes() {
-      const tarefas = [
-        { hora: '07:30', texto: 'Prepare a recepção e o ambiente' },
-        { hora: '08:00', texto: 'Início de organização e respostas de clientes' },
-        { hora: '09:00', texto: 'Fechar caixa e enviar relatório' },
-        { hora: '10:00', texto: 'Kick-off com equipe' },
-        { hora: '11:00', texto: 'Feedback com Andressa' },
-        { hora: '14:00', texto: 'Enviar confirmação para clientes da semana' },
-        { hora: '16:00', texto: 'Atualizar CRM' },
-        { hora: '17:00', texto: 'Verificar banheiros e fechar caixa' }
-      ];
-
-      tarefas.forEach(tarefa => {
-        const agora = new Date();
-        const [hora, minuto] = tarefa.hora.split(':');
-        const horarioTarefa = new Date();
-        horarioTarefa.setHours(hora, minuto, 0);
-
-        if (horarioTarefa > agora) {
-          const delay = horarioTarefa - agora;
-          setTimeout(() => {
-            new Notification('Lembrete', { body: tarefa.texto });
-          }, delay);
-        }
+    // Função para salvar o estado dos checkboxes no localStorage
+    function saveCheckboxState() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        localStorage.setItem(checkbox.dataset.taskId, checkbox.checked);
       });
     }
 
-    window.onload = solicitarPermissaoNotificacao;
+    // Função para carregar o estado salvo dos checkboxes
+    function loadCheckboxState() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        const savedState = localStorage.getItem(checkbox.dataset.taskId);
+        if (savedState !== null) {
+          checkbox.checked = savedState === 'true';
+        }
+        // Adiciona o evento de mudança para salvar estado sempre que mudar
+        checkbox.addEventListener('change', saveCheckboxState);
+      });
+    }
+
+    // Função para limpar todas as marcações
+    function clearAllCheckboxes() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        localStorage.removeItem(checkbox.dataset.taskId); // Limpa do localStorage
+      });
+    }
+
+    // Carrega o estado dos checkboxes ao carregar a página
+    window.onload = function() {
+      loadCheckboxState();
+
+      // Adiciona o evento para o botão de limpar todas as marcações
+      document.getElementById('clear-btn').addEventListener('click', clearAllCheckboxes);
+    };
   </script>
 
 </body>
