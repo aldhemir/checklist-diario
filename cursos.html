@@ -221,26 +221,9 @@
     }
 
     document.getElementById("add-button").addEventListener("click", () => {
-      const newItem = {
-        nome: prompt("Nome:"),
-        sobrenome: prompt("Sobrenome:"),
-        telefone: prompt("Telefone:"),
-        dataNascimento: prompt("Data de Nascimento:"),
-        cpf: prompt("CPF:"),
-        email: prompt("E-mail:"),
-        curso: prompt("Curso:"),
-        dataCurso: prompt("Data do Curso:"),
-        sinal: prompt("Sinal:"),
-        valor: prompt("Valor:"),
-        presente: prompt("Presente:"),
-        vendedora: prompt("Vendedora:"),
-        formasPagamento: prompt("Formas de Pagamento:"),
-        observacao: prompt("Observação:")
-      };
-      data.push(newItem);
-      saveData(data);
-      renderTable();
-    });
+  window.location.href = `edit.html`;
+});
+
 
     function editRow(index) {
   window.location.href = `edit.html?index=${index}`;
