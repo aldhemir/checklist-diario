@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Cursos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6f2;
+    }
+
+    header {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    main {
+      margin: 2rem auto;
+      width: 95%; /* Aumentar o uso da largura da tela */
+      max-width: 1400px; /* Definir um limite máximo */
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #ff7f7f;
+      color: white;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    button {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    button:hover {
+      background-color: #cc6699;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #ff7f7f;
+      color: white;
+    }
+
+    /* Estilo para botões de navegação */
+    .nav-button {
+      background-color: #ff7f7f;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      margin: 5px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #ff6666;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .nav-button:active {
+      background-color: #ff4d4d;
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    nav {
+    display: inline-block;
+    margin-right: 10px; /* Espaço entre os botões */
+  }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 1024px) {
+      main {
+        width: 90%;
+      }
+
+      table th, table td {
+        font-size: 0.9em;
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        width: 95%;
+      }
+
+      .button-container button {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gestão de Cursos</h1>
+  </header>
+  <nav>
+    <a href="index.html" class="nav-button">Inicio</a>
+</nav>
+<nav>
+  <a href="Checklist.html" class="nav-button">Checklists</a>
+</nav>
+  <main>
+    <div class="table-container">
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Telefone</th>
+            <th>Data Nascimento</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Curso</th>
+            <th>Data Curso</th>
+            <th>Sinal</th>
+            <th>Valor</th>
+            <th>Presente</th>
+            <th>Vendedora</th>
+            <th>Formas de Pagamentos</th>
+            <th>OBSERVAÇÃO</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas de dados serão inseridas dinamicamente -->
+        </tbody>
+      </table>
+    </div>
+    <div class="button-container">
+      <button id="add-button">Adicionar Novo</button>
+    </div>
+  </main>
+  <footer>
+    <p>© 2024 Gestão de Cursos</p>
+  </footer>
+  <script>
+    const localStorageKey = "gestaoCursosData";
+
+    const loadData = () => {
+      const storedData = localStorage.getItem(localStorageKey);
+      return storedData ? JSON.parse(storedData) : [];
+    };
+
+    const saveData = (data) => {
+      localStorage.setItem(localStorageKey, JSON.stringify(data));
+    };
+
+    let data = loadData();
+
+    function renderTable() {
+      const tableBody = document.querySelector("#data-table tbody");
+      tableBody.innerHTML = "";
+      data.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.nome}</td>
+          <td>${item.sobrenome}</td>
+          <td>${item.telefone}</td>
+          <td>${item.dataNascimento}</td>
+          <td>${item.cpf}</td>
+          <td>${item.email}</td>
+          <td>${item.curso}</td>
+          <td>${item.dataCurso}</td>
+          <td>${item.sinal}</td>
+          <td>${item.valor}</td>
+          <td>${item.presente}</td>
+          <td>${item.vendedora}</td>
+          <td>${item.formasPagamento}</td>
+          <td>${item.observacao}</td>
+          <td>
+            <button onclick="editRow(${index})">Editar</button>
+            <button onclick="deleteRow(${index})">Excluir</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    document.getElementById("add-button").addEventListener("click", () => {
+      const newItem = {
+        nome: prompt("Nome:"),
+        sobrenome: prompt("Sobrenome:"),
+        telefone: prompt("Telefone:"),
+        dataNascimento: prompt("Data de Nascimento:"),
+        cpf: prompt("CPF:"),
+        email: prompt("E-mail:"),
+        curso: prompt("Curso:"),
+        dataCurso: prompt("Data do Curso:"),
+        sinal: prompt("Sinal:"),
+        valor: prompt("Valor:"),
+        presente: prompt("Presente:"),
+        vendedora: prompt("Vendedora:"),
+        formasPagamento: prompt("Formas de Pagamento:"),
+        observacao: prompt("Observação:")
+      };
+      data.push(newItem);
+      saveData(data);
+      renderTable();
+    });
+
+    function editRow(index) {
+  window.location.href = `edit.html?index=${index}`;
+}
+
+
+    function deleteRow(index) {
+      if (confirm("Tem certeza que deseja excluir este registro?")) {
+        data.splice(index, 1);
+        saveData(data);
+        renderTable();
+      }
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>
