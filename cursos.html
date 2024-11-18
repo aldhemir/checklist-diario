@@ -80,7 +80,6 @@
       color: white;
     }
 
-    /* Estilo para botões de navegação */
     .nav-button {
       background-color: #ff7f7f;
       color: white;
@@ -104,12 +103,12 @@
       transform: translateY(0);
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    nav {
-    display: inline-block;
-    margin-right: 10px; /* Espaço entre os botões */
-  }
 
-    /* Responsividade para telas menores */
+    nav {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
     @media (max-width: 1024px) {
       main {
         width: 90%;
@@ -139,10 +138,10 @@
   </header>
   <nav>
     <a href="index.html" class="nav-button">Inicio</a>
-</nav>
-<nav>
-  <a href="Checklist.html" class="nav-button">Checklists</a>
-</nav>
+  </nav>
+  <nav>
+    <a href="Checklist.html" class="nav-button">Checklists</a>
+  </nav>
   <main>
     <div class="table-container">
       <table id="data-table">
@@ -172,11 +171,14 @@
     </div>
     <div class="button-container">
       <button id="add-button">Adicionar Novo</button>
+      <!-- Botão de Exportar Dados -->
+      <button id="export-button">Exportar Dados</button>
     </div>
   </main>
   <footer>
     <p>© 2024 Gestão de Cursos</p>
   </footer>
+
   <script>
     const localStorageKey = "gestaoCursosData";
 
@@ -221,14 +223,12 @@
     }
 
     document.getElementById("add-button").addEventListener("click", () => {
-  window.location.href = `edit.html`;
-});
-
+      window.location.href = `edit.html`;
+    });
 
     function editRow(index) {
-  window.location.href = `edit.html?index=${index}`;
-}
-
+      window.location.href = `edit.html?index=${index}`;
+    }
 
     function deleteRow(index) {
       if (confirm("Tem certeza que deseja excluir este registro?")) {
@@ -237,6 +237,32 @@
         renderTable();
       }
     }
+
+    // Função para exportar dados
+    document.getElementById("export-button").addEventListener("click", () => {
+      const localStorageKey = "gestaoCursosData";
+
+      // Obter os dados do localStorage
+      const data = localStorage.getItem(localStorageKey);
+
+      if (!data) {
+        alert("Não há dados para exportar!");
+        return;
+      }
+
+      // Criar um arquivo JSON
+      const blob = new Blob([data], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      // Criar um link para download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "dados_gestao_cursos.json";
+      a.click();
+
+      // Liberar memória após o download
+      URL.revokeObjectURL(url);
+    });
 
     renderTable();
   </script>
