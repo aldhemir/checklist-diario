@@ -37,10 +37,15 @@
       font-weight: bold;
     }
 
-    input, select {
+    input, select, textarea {
       padding: 0.5rem;
       border: 1px solid #ddd;
       border-radius: 5px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
     }
 
     button {
@@ -50,10 +55,19 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      width: 48%;
     }
 
     button:hover {
       background-color: #cc6699;
+    }
+
+    button.cancel {
+      background-color: #ccc;
+    }
+
+    button.cancel:hover {
+      background-color: #999;
     }
   </style>
 </head>
@@ -75,7 +89,10 @@
       <label>Vendedora: <input type="text" id="vendedora"></label>
       <label>Formas de Pagamento: <input type="text" id="formasPagamento"></label>
       <label>Observação: <textarea id="observacao"></textarea></label>
-      <button type="submit">Salvar</button>
+      <div class="button-container">
+        <button type="submit">Salvar</button>
+        <button type="button" class="cancel" id="cancel-button">Cancelar</button>
+      </div>
     </form>
   </main>
   <script>
@@ -144,6 +161,12 @@
       }
 
       saveData(data);
+      window.location.href = "index.html";
+    });
+
+    // Botão Cancelar
+    const cancelButton = document.getElementById("cancel-button");
+    cancelButton.addEventListener("click", () => {
       window.location.href = "index.html";
     });
   </script>
